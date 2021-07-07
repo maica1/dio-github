@@ -13,7 +13,6 @@ git config --list
 git config --global user.email user@domain.com
 git config --list
 
-#TODO: testar configs locais e não globais
 #TODO: Testar o que acontece se eu realizar um commit(cli) com email de outro usuário
 ```
 
