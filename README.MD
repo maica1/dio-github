@@ -108,4 +108,3 @@ Quando dizemos que o git é um sistema distribuido de versionamento de código, 
 * Staging area -> Arquivos aguardando commit
 * Local repository -> arquivos que foram comitados
 
-FAZER UM TESTE DE RESTORE
