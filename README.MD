@@ -20,13 +20,12 @@ O git realiza o derenciamento de alterações através de um algoritimo seguro d
 
 Como dito anteriormente, o sha é um algoritimo de hash que retorna um valor _quase_ único que identifica o objeto em questão. O algoritimo utilizado é de 160 bits e não é possível reverter o hash criado para o valor original que foi criptografado.
 
-`echo "conteudo" | sha1sum -
-65b0d0dda479cc03cce59528e28961e498155f5c  -
-`
-
-`echo "onteudo" | sha1sum -
-8feae1c68dbdfb512ce8514d87e1efe913a3f1e1  -`
-
+```shell
+echo "conteudo" | sha1sum -
+5b0d0dda479cc03cce59528e28961e498155f5c  -
+echo "onteudo" | sha1sum -
+8feae1c68dbdfb512ce8514d87e1efe913a3f1e1  -
+```
 Como podemos ver no exemplo acima, duas strings muito parecidas(diferença de um caracter) geram resultados totalmente aleatórios e sem relação entre sí.
 
 ### **Objetos do git**
@@ -51,35 +50,43 @@ O git utiliza 3 tipos básicos de objetos para gerenciar os projetos:
 Agora que já entendemos o que é git e pra que ele serve, é hora de faze-lo funcionar.
 
 Em um diretório vazio damos o comando `git init` e o terminal nos retorna uma saída como `Initialized empty Git repository in /home/user/dir/.git/` indicando que criou o repositório dentro do diretório .git, é ali que a magia acontece. Dentro deste diretório encontramos a seguinte esturura: 
-`ls -A \n branches  config  description  HEAD  hooks  info  objects  refs`
+```shell
+ls -A 
+branches  config  description  HEAD  hooks  info  objects  refs
+```
 No .git temos o diretório branches, um conceito também fundamental que será visto mais adiante, arquivo de configurações que será abordado no proximo paragrafo, description, HEAD que auxiliará no gerenciamento de alterações de versionamento, diretório hooks, info, objects - que não por acaso são os blobs,trees e commits já estudados -, e diretorio refs.
 
 Após a inicialização do repositório, devemos configura-lo, para isso usamos o comando `git config`, e parametrizamos ele de acordo com a necessidade. Falamos anteriormente que o objeto commit necessita armazenar mensagem, usuario e e-mail, iremos configurar agora alguns desses parametros.
 
 `git config --global  user.name 'Maica1'` -> Nome de quem está utilizando o respositório.
+
 `git config --global user.email 'maicon.vieira@outlook.com.br'` - Email que identificará o usuário
 
 Dentro do diretório que foi inicializado o repositório, começamos a criar nosso projeto, criamos um arquivo e informamos ao git que ele irá gerenciar este arquivo, através do comando `git add filename`, caso não fizemos isso, o git saberá que o arquivo está dentro do projeto, mas não irá se preocupar com o gerenciamento deste como vemos a seguir:
-`git status \n
-On branch master \n
-No commits yet \n
-Untracked files: \n
-  (use "git add <file>..." to include in what will be committed) \n
-	logs/ \n
-`
+
+```shell
+git status
+On branch master
+No commits yet
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+  logs/
+```
+
 Este é o status do projeto, com este comando conseguimos verificar conflitos, o que está sendo gerenciado e foi alterado, ações a serem tomadas, etc.
 Como o diretorio logs não está sendo gerenciado, vamos fazer como instruído e adiciona-lo ao projeto.
 
-`git status \n
-On branch master \n
+```shell
+git status
+On branch master
 
 
-No commits yet \n
+No commits yet
 
-Changes to be committed: \n
-  (use "git rm --cached <file>..." to unstage) \n
-new file:   logs/zoom_stdout_stderr.log \n
-`
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+new file:   logs/zoom_stdout_stderr.log
+```
 
 ![Aprofundamento no gerencimanto de arquivos](images/tracking_state.png)
 
@@ -87,7 +94,7 @@ new file:   logs/zoom_stdout_stderr.log \n
 * Tracked
   * Unmodified -> Arquivos gerenciados que não foram alterados
   * Modified -> Arquivo gerenciado que tem sua SHA1 diferente da que consta na base do git, caracterizando uma modificação/alteração no arquivo
-  * Staged -> Arquivos prontos para serem commitados, versões de release. 
+  * Staged -> Arquivos prontos para serem commitados, versões de release.
 
 ### Gerenciador de versionamento distribuido
 
@@ -99,4 +106,4 @@ Quando dizemos que o git é um sistema distribuido de versionamento de código, 
 * Staging area -> Arquivos aguardando commit
 * Local repository -> arquivos que foram comitados
 
-FAZER UM TESTE DE RESTORE, 
+FAZER UM TESTE DE RESTORE;
