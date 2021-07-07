@@ -33,3 +33,10 @@ git push -u ${REPO_URL}/${REPO_NICKNAME} ${BRANCH_TO_COMMIT}
 
 Ou enviar um repositório que já esta sendo trabalhado(mesmos passos a partir do git remote add).
 
+## Conflitos
+
+O git pode resolver conflitos automaticamente, quando por exemplo um não impacta severamente o outro pois são em linhas ou arquivos diferentes e não se relacionam diretamente.
+
+No caso de alterações que se excluem mutuamente, ou que geram uma nova estrutura do arquivo, o conflito tem que ser resolvido manualmente, nesse caso quando damos o push o git identifica o conflito, tenta resolver, não consegue e sugere que seja feito o Pull para resolução manual.
+
+Dando o git pull o arquivo que contem as mudanças vira como um diff, com  "<<<>>>" caracteres apontando quais linhas tem em cada arquivo. Resolva as diferenças, salve e commit.
