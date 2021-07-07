@@ -1,4 +1,4 @@
-# Git e Github :computer: :chicken:
+# Git e Github 💻 🥇
 
 ## Intro
 
