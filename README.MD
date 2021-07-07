@@ -26,17 +26,18 @@ echo "conteudo" | sha1sum -
 echo "onteudo" | sha1sum -
 8feae1c68dbdfb512ce8514d87e1efe913a3f1e1  -
 ```
+
 Como podemos ver no exemplo acima, duas strings muito parecidas(diferença de um caracter) geram resultados totalmente aleatórios e sem relação entre sí.
 
 ### **Objetos do git**
 
 O git utiliza 3 tipos básicos de objetos para gerenciar os projetos:
 
-| Blob | Tree | Commit  |   |
-|:-: |- |- |- |
-| ![Representação de um blob](images/blob_obj.png)  | ![Representação de uma tree](images/tree_obj.png)  | ![Representação de um commit](images/commit_obj.png)  |   |
-| O Obejto blob tem o conteúdo do arquivo + os metadados em sua composição (e isso é levado em consideração no hash como veremos abaixo)         Os metadados incluem o tipo de objeto, o tamanho, uma string \0 e o conteúdo do arquivo.  | Armazenam blobs, e commits, ´é uma estrutura composta. Guarda o tipo de blob, tamanho, \0 nome do arquivo e hash dele Monta a estrutura de diretorios  | Objeto que agrega todas as alterações realizadas, tem como metadados: tamanho, tree, parente(?commit?), autor, mensagem e timestamp  |   |
-| `echo "conteudo" \| git hash-object --stdin fc31e91b26cf85a55e072476de7f263c89260eb1`  `echo -e "blob 9\0conteudo" \| sha1sum - fc31e91b26cf85a55e072476de7f263c89260eb1  -`  | Guarda as hashes dos arquivos e tem uma hash propria, ou seja, mudando um arquivo dentro do projeto, a tree irá ser alterada tambem  | Garante a rastreabilidade do sistema, com timestamp, as hashes, autor e mensagem do commit. Também possui hash (fica no log)  |   |
+| Blob | Tree | Commit  |
+|:-: |- |-
+| ![Representação de um blob](images/blob_obj.png)  | ![Representação de uma tree](images/tree_obj.png)  | ![Representação de um commit](images/commit_obj.png)
+| O Obejto blob tem o conteúdo do arquivo + os metadados em sua composição (e isso é levado em consideração no hash como veremos abaixo)         Os metadados incluem o tipo de objeto, o tamanho, uma string \0 e o conteúdo do arquivo.  | Armazenam blobs, e commits, ´é uma estrutura composta. Guarda o tipo de blob, tamanho, \0 nome do arquivo e hash dele Monta a estrutura de diretorios  | Objeto que agrega todas as alterações realizadas, tem como metadados: tamanho, tree, parente(?commit?), autor, mensagem e timestamp
+| `echo "conteudo" \| git hash-object --stdin fc31e91b26cf85a55e072476de7f263c89260eb1`  `echo -e "blob 9\0conteudo" \| sha1sum - fc31e91b26cf85a55e072476de7f263c89260eb1  -`  | Guarda as hashes dos arquivos e tem uma hash propria, ou seja, mudando um arquivo dentro do projeto, a tree irá ser alterada tambem  | Garante a rastreabilidade do sistema, com timestamp, as hashes, autor e mensagem do commit. Também possui hash (fica no log)
 
 <div style="text-align:center">
 
@@ -44,16 +45,17 @@ O git utiliza 3 tipos básicos de objetos para gerenciar os projetos:
 
 </div>
 
-
 ## Enough chating
 
 Agora que já entendemos o que é git e pra que ele serve, é hora de faze-lo funcionar.
 
-Em um diretório vazio damos o comando `git init` e o terminal nos retorna uma saída como `Initialized empty Git repository in /home/user/dir/.git/` indicando que criou o repositório dentro do diretório .git, é ali que a magia acontece. Dentro deste diretório encontramos a seguinte esturura: 
+Em um diretório vazio damos o comando `git init` e o terminal nos retorna uma saída como `Initialized empty Git repository in /home/user/dir/.git/` indicando que criou o repositório dentro do diretório .git, é ali que a magia acontece. Dentro deste diretório encontramos a seguinte esturura:
+
 ```shell
 ls -A 
 branches  config  description  HEAD  hooks  info  objects  refs
 ```
+
 No .git temos o diretório branches, um conceito também fundamental que será visto mais adiante, arquivo de configurações que será abordado no proximo paragrafo, description, HEAD que auxiliará no gerenciamento de alterações de versionamento, diretório hooks, info, objects - que não por acaso são os blobs,trees e commits já estudados -, e diretorio refs.
 
 Após a inicialização do repositório, devemos configura-lo, para isso usamos o comando `git config`, e parametrizamos ele de acordo com a necessidade. Falamos anteriormente que o objeto commit necessita armazenar mensagem, usuario e e-mail, iremos configurar agora alguns desses parametros.
@@ -106,4 +108,4 @@ Quando dizemos que o git é um sistema distribuido de versionamento de código, 
 * Staging area -> Arquivos aguardando commit
 * Local repository -> arquivos que foram comitados
 
-FAZER UM TESTE DE RESTORE;
+FAZER UM TESTE DE RESTORE
